@@ -105,6 +105,9 @@
   .submit-btn:hover{background:var(--blue);}
   .form-note{font-size:.72rem;color:var(--light-muted);text-align:center;font-family:'Didact Gothic',sans-serif;margin-top:6px;}
   .form-success{display:none;text-align:center;color:#2a7a50;font-family:'Didact Gothic',sans-serif;font-size:.9rem;padding:24px;background:#fff;border:1px solid rgba(42,130,80,.2);}
+  .form-error{display:none;text-align:center;color:#a33;font-family:'Didact Gothic',sans-serif;font-size:.88rem;padding:16px;background:#fff;border:1px solid rgba(170,51,51,.25);margin-top:14px;}
+  .submit-btn:disabled{background:var(--light-muted);cursor:not-allowed;}
+  .hp-field{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
 
   /* FOOTER */
   footer{padding:36px 60px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);background:#fff;flex-wrap:wrap;gap:16px;}
@@ -256,17 +259,19 @@
   <p class="section-desc reveal">We welcome enquiries from landowners, investors and joint venture partners across Australia and New Zealand.</p>
   <div class="contact-box reveal">
     <a href="mailto:info@ablebusiness.com.au" class="contact-email">info@ablebusiness.com.au</a>
-    <div class="contact-form" id="contactForm">
+    <form class="contact-form" id="contactForm" action="https://formspree.io/f/xljroeyl" method="POST">
       <div class="row">
         <input type="text" id="fname" name="name" placeholder="Full Name" required/>
         <input type="email" id="femail" name="email" placeholder="Email Address" required/>
       </div>
-      <input type="text" id="fsubject" name="subject" placeholder="Subject (e.g. Joint Venture, Land Acquisition)"/>
-      <textarea id="fmessage" name="message" rows="5" placeholder="Your Message"></textarea>
-      <button class="submit-btn" onclick="submitForm(event)">Send Enquiry</button>
+      <input type="text" id="fsubject" name="_subject" placeholder="Subject (e.g. Joint Venture, Land Acquisition)"/>
+      <textarea id="fmessage" name="message" rows="5" placeholder="Your Message" required></textarea>
+      <div class="hp-field" aria-hidden="true"><label>Leave this field empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"/></label></div>
+      <button type="submit" class="submit-btn" id="submitBtn">Send Enquiry</button>
       <p class="form-note">We aim to respond within 2 business days.</p>
-    </div>
-    <div class="form-success" id="formSuccess">✓ Thank you — your email client will open with your message ready to send.</div>
+    </form>
+    <div class="form-error" id="formError" role="alert"></div>
+    <div class="form-success" id="formSuccess">✓ Thank you — your message has been sent. We'll be in touch within 2 business days.</div>
   </div>
 </section>
 
@@ -303,19 +308,52 @@
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
 
-  function submitForm(e){
+  // Contact form -> Formspree. The action attribute is the single source of
+  // truth for the endpoint, so a native (no-JS) POST hits the same place.
+  const cForm = document.getElementById('contactForm');
+  const cBtn = document.getElementById('submitBtn');
+  const cErr = document.getElementById('formError');
+  const cOk = document.getElementById('formSuccess');
+
+  function showError(msg){ cErr.textContent = msg; cErr.style.display = 'block'; }
+
+  cForm.addEventListener('submit', function(e){
     e.preventDefault();
-    const n=document.getElementById('fname').value.trim();
-    const em=document.getElementById('femail').value.trim();
-    const s=document.getElementById('fsubject').value.trim();
-    const m=document.getElementById('fmessage').value.trim();
-    if(!n||!em||!m){alert('Please fill in your name, email and message.');return;}
-    const subject=encodeURIComponent(s||'Enquiry from '+n);
-    const body=encodeURIComponent('Name: '+n+'\nEmail: '+em+'\n\n'+m);
-    window.location.href='mailto:info@ablebusiness.com.au?subject='+subject+'&body='+body;
-    document.getElementById('contactForm').style.display='none';
-    document.getElementById('formSuccess').style.display='block';
-  }
+    cErr.style.display = 'none';
+
+    var endpoint = cForm.getAttribute('action');
+    if (endpoint.indexOf('YOUR_FORM_ID') !== -1) {
+      showError('This form is not connected yet. Please email info@ablebusiness.com.au directly.');
+      return;
+    }
+
+    var label = cBtn.textContent;
+    cBtn.disabled = true;
+    cBtn.textContent = 'Sending...';
+
+    fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(cForm)
+    }).then(function(res){
+      if (res.ok) {
+        cForm.style.display = 'none';
+        cOk.style.display = 'block';
+        return null;
+      }
+      return res.json().catch(function(){ return null; }).then(function(data){
+        var m = (data && data.errors && data.errors.length)
+          ? data.errors.map(function(x){ return x.message; }).join(', ')
+          : 'Something went wrong sending your message. Please email info@ablebusiness.com.au directly.';
+        showError(m);
+      });
+    }).catch(function(){
+      showError('Could not reach the server. Please check your connection, or email info@ablebusiness.com.au directly.');
+    }).finally(function(){
+      cBtn.disabled = false;
+      cBtn.textContent = label;
+    });
+  });
 </script>
 </body>
 </html>
