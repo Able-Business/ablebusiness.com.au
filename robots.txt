@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ablebusiness.com.au/sitemap.xml
