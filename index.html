@@ -50,7 +50,7 @@
     --card:#fafafa;
   }
   html{scroll-behavior:smooth;}
-  section[id],.about-strip{scroll-margin-top:84px;}
+  section[id]{scroll-margin-top:84px;}
   .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
   .skip-link{position:absolute;left:-9999px;top:0;z-index:200;background:var(--navy);color:#fff;padding:12px 20px;font-family:'Didact Gothic',sans-serif;font-size:.8rem;text-decoration:none;}
   .skip-link:focus{left:0;}
@@ -86,11 +86,6 @@
   .scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,rgba(255,255,255,.6),transparent);animation:scrollPulse 2s infinite;}
 
   /* STATS */
-  .about-strip{padding:60px;display:flex;align-items:center;gap:0;border-bottom:1px solid var(--border);background:var(--white);}
-  .about-stat{text-align:center;flex:1;}
-  .about-stat .num{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:300;color:var(--navy);letter-spacing:.05em;}
-  .about-stat .label{font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;color:var(--light-muted);font-family:'Didact Gothic',sans-serif;margin-top:6px;}
-  .about-divider{width:1px;height:50px;background:var(--border);}
 
   /* SECTIONS */
   section{padding:100px 60px;}
@@ -173,7 +168,6 @@
     body{background:#fff;color:#000;}
     .js .reveal{opacity:1 !important;transform:none !important;}
     section{padding:14px 0 !important;}
-    .about-strip{padding:14px 0 !important;}
     footer{padding:14px 0 !important;border-top:1px solid #ccc;}
     .projects-grid{display:block;}
     .project-card{break-inside:avoid;page-break-inside:avoid;border:1px solid #ccc;margin-bottom:14px;}
@@ -188,8 +182,6 @@
     .nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:#fff;padding:24px;gap:20px;border-bottom:1px solid var(--border);box-shadow:0 8px 24px rgba(0,0,0,.08);}
     .nav-links.open{display:flex;}
     .hamburger{display:flex;}
-    .about-strip{flex-direction:column;gap:28px;padding:48px 24px;}
-    .about-divider{width:50px;height:1px;}
     section{padding:64px 24px;}
     .projects-header{flex-direction:column;align-items:flex-start;}
     #about{flex-direction:column;gap:40px;}
@@ -235,15 +227,6 @@
     Scroll
   </div>
 </section>
-
-<!-- STATS -->
-<div class="about-strip reveal">
-  <div class="about-stat"><div class="num">20+</div><div class="label">Years Experience</div></div>
-  <div class="about-divider"></div>
-  <div class="about-stat"><div class="num">AU / NZ</div><div class="label">Markets</div></div>
-  <div class="about-divider"></div>
-  <div class="about-stat"><div class="num">4</div><div class="label">Current &amp; Recent</div></div>
-</div>
 
 <!-- PROJECTS -->
 <section id="projects">
