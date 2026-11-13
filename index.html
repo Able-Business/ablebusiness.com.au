@@ -8,6 +8,7 @@
 <meta name="description" content="Privately held property developer since 2004. Luxury homes and multi-residential townhouses across Sydney, the Sutherland Shire and New Zealand."/>
 <link rel="canonical" href="https://ablebusiness.com.au/"/>
 <meta name="theme-color" content="#1a3a6b"/>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https://images.unsplash.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src https://formspree.io; form-action https://formspree.io; base-uri 'self'; object-src 'none'"/>
 
 <meta property="og:type" content="website"/>
 <meta property="og:site_name" content="Able Business"/>
@@ -167,13 +168,17 @@
 
   /* PRINT */
   @media print{
-    nav,.scroll-hint,.hamburger,.skip-link,#home,.btn,.submit-btn,.form-note,.hp-field{display:none !important;}
+    @page{margin:14mm;}
+    nav,.scroll-hint,.hamburger,.skip-link,#home,.btn,.submit-btn,.form-note,.hp-field,.form-error{display:none !important;}
     body{background:#fff;color:#000;}
     .js .reveal{opacity:1 !important;transform:none !important;}
-    section{padding:18px 0 !important;}
+    section{padding:14px 0 !important;}
+    .about-strip{padding:14px 0 !important;}
+    footer{padding:14px 0 !important;border-top:1px solid #ccc;}
     .projects-grid{display:block;}
     .project-card{break-inside:avoid;page-break-inside:avoid;border:1px solid #ccc;margin-bottom:14px;}
-    footer{border-top:1px solid #ccc;}
+    .project-img{height:200px;}
+    #about{gap:24px !important;}
   }
 
   /* MOBILE */
