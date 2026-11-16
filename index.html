@@ -44,9 +44,8 @@
     --navy:#002149;
     --blue:#0048ab;
     --muted:#666;
-    --light-muted:#767676;
+    --light-muted:#6b6b6b;
     --border:#e0e0e0;
-    --card:#fafafa;
   }
   html{scroll-behavior:smooth;}
   picture{display:contents;}
@@ -69,7 +68,7 @@
   .hamburger span{display:block;width:24px;height:1px;background:var(--dark);transition:.3s;}
 
   /* HERO */
-  #home{height:100vh;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  #home{height:100vh;height:100svh;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;}
   .hero-bg{position:absolute;inset:0;}
   .hero-bg img{width:100%;height:100%;object-fit:cover;display:block;}
   .hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,33,73,.86) 0%,rgba(0,72,171,.66) 50%,rgba(0,33,73,.84) 100%);}
@@ -83,8 +82,6 @@
   .btn-navy:hover{background:var(--navy);color:#fff;}
   .scroll-hint{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,.5);font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;font-family:'Barlow',sans-serif;}
   .scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,rgba(255,255,255,.6),transparent);animation:scrollPulse 2s infinite;}
-
-  /* STATS */
 
   /* SECTIONS */
   section{padding:100px 60px;}
@@ -110,8 +107,8 @@
   .status-completed{background:rgba(0,33,73,.06);color:var(--navy);border:1px solid rgba(0,33,73,.22);}
 
   /* ABOUT */
-  #about{display:flex;gap:80px;align-items:center;justify-content:center;flex-wrap:wrap;background:var(--white);}
-  .about-text{flex:1;min-width:280px;max-width:760px;text-align:center;}
+  #about{display:flex;justify-content:center;background:var(--white);}
+  .about-text{flex:1;max-width:760px;text-align:center;}
   .about-text p:not(.section-label){color:var(--muted);font-size:.9rem;line-height:1.95;font-family:'Barlow',sans-serif;margin-bottom:18px;}
 
   /* CONTACT */
@@ -129,7 +126,7 @@
   .submit-btn{width:100%;padding:14px;background:var(--navy);color:#fff;border:none;font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;font-family:'Barlow',sans-serif;cursor:pointer;transition:background .3s;}
   .submit-btn:hover{background:var(--blue);}
   .form-note{font-size:.72rem;color:var(--light-muted);text-align:center;font-family:'Barlow',sans-serif;margin-top:6px;}
-  .form-success{display:none;text-align:center;color:#2a7a50;font-family:'Barlow',sans-serif;font-size:.9rem;padding:24px;background:#fff;border:1px solid rgba(42,130,80,.2);}
+  .form-success{outline:none;display:none;text-align:center;color:#2a7a50;font-family:'Barlow',sans-serif;font-size:.9rem;padding:24px;background:#fff;border:1px solid rgba(42,130,80,.2);}
   .link-btn{background:none;border:none;padding:0;margin-left:6px;color:var(--navy);font-family:'Barlow',sans-serif;font-size:.86rem;text-decoration:underline;cursor:pointer;}
   .form-error{display:none;text-align:center;color:#a33;font-family:'Barlow',sans-serif;font-size:.88rem;padding:16px;background:#fff;border:1px solid rgba(170,51,51,.25);margin-top:14px;}
   .submit-btn:disabled{background:var(--light-muted);cursor:not-allowed;}
@@ -139,7 +136,6 @@
   footer{padding:36px 60px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);background:#fff;flex-wrap:wrap;gap:16px;}
   .footer-logo img{height:36px;width:auto;}
 
-  /* Logo embed */
   .footer-copy{font-size:.72rem;color:var(--light-muted);font-family:'Barlow',sans-serif;letter-spacing:.05em;}
 
   /* ANIMS */
@@ -168,12 +164,14 @@
     .projects-grid{display:block;}
     .project-card{break-inside:avoid;page-break-inside:avoid;border:1px solid #ccc;margin-bottom:14px;}
     .project-img{height:200px;}
-    #about{gap:24px !important;}
   }
 
   /* MOBILE */
   @media(max-width:768px){
     .eb-sep{display:block;height:0;overflow:hidden;}
+    #home{padding:0;}
+    .hero-content{padding:0 16px;}
+    .hero-title{font-size:min(2.1rem,calc((100vw - 34px) / 10));}
     nav{padding:8px 20px;}
     nav.scrolled{padding:4px 20px;}
     .nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:#fff;padding:24px;gap:20px;border-bottom:1px solid var(--border);box-shadow:0 8px 24px rgba(0,0,0,.08);}
@@ -181,7 +179,6 @@
     .hamburger{display:flex;}
     section{padding:64px 24px;}
     .projects-header{flex-direction:column;align-items:flex-start;}
-    #about{flex-direction:column;gap:40px;}
     footer{flex-direction:column;text-align:center;padding:28px 24px;}
     .contact-form .row{grid-template-columns:1fr;}
   }
@@ -193,7 +190,7 @@
 <!-- NAV -->
 <nav id="navbar">
   <a class="nav-logo" href="#home">
-    <picture><source srcset="logo.webp" type="image/webp"/><img src="logo.jpg" alt="Able Business" width="1125" height="607" style="height:52px;width:auto;display:block;"/></picture>
+    <picture><source srcset="logo.webp" type="image/webp"/><img src="logo.jpg" alt="Able Business" width="1125" height="607"/></picture>
   </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#home" class="active">Home</a></li>
@@ -312,7 +309,7 @@
       <p class="form-note">We aim to respond within 2 business days.</p>
     </form>
     <div class="form-error" id="formError" role="alert"></div>
-    <div class="form-success" id="formSuccess">✓ Thank you. Your message has been sent. We'll be in touch within 2 business days.<button type="button" class="link-btn" id="againBtn">Send another enquiry</button></div>
+    <div class="form-success" id="formSuccess" role="status" tabindex="-1">✓ Thank you. Your message has been sent. We'll be in touch within 2 business days.<button type="button" class="link-btn" id="againBtn">Send another enquiry</button></div>
   </div>
 </section>
 
@@ -364,8 +361,6 @@
 
   document.getElementById('year').textContent = new Date().getFullYear();
 
-
-
   // Contact form -> Formspree. The action attribute is the single source of
   // truth for the endpoint, so a native (no-JS) POST hits the same place.
   const cForm = document.getElementById('contactForm');
@@ -388,10 +383,6 @@
     cErr.style.display = 'none';
 
     var endpoint = cForm.getAttribute('action');
-    if (endpoint.indexOf('YOUR_FORM_ID') !== -1) {
-      showError('This form is not connected yet. Please email info@ablebusiness.com.au directly.');
-      return;
-    }
 
     var label = cBtn.textContent;
     cBtn.disabled = true;
@@ -405,6 +396,7 @@
       if (res.ok) {
         cForm.style.display = 'none';
         cOk.style.display = 'block';
+        cOk.focus();
         return null;
       }
       return res.json().catch(function(){ return null; }).then(function(data){
