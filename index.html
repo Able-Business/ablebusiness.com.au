@@ -78,8 +78,6 @@
   .hero-sub{font-size:.95rem;color:rgba(255,255,255,.75);max-width:540px;margin:0 auto 40px;line-height:1.9;text-wrap:balance;font-family:'Barlow',sans-serif;}
   .btn{display:inline-block;padding:13px 36px;border:1px solid #fff;color:#fff;text-decoration:none;font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;font-family:'Barlow',sans-serif;transition:.3s;background:transparent;}
   .btn:hover{background:#fff;color:var(--navy);}
-  .btn-navy{border-color:var(--navy);color:var(--navy);}
-  .btn-navy:hover{background:var(--navy);color:#fff;}
   .scroll-hint{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,.5);font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;font-family:'Barlow',sans-serif;}
   .scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,rgba(255,255,255,.6),transparent);animation:scrollPulse 2s infinite;}
 
@@ -102,10 +100,7 @@
   .project-num{font-size:.65rem;letter-spacing:.3em;color:var(--light-muted);font-family:'Barlow',sans-serif;margin-bottom:8px;}
   .project-title{font-family:'Martel',serif;font-size:1.2rem;font-weight:400;margin-bottom:10px;color:var(--navy);}
   .project-desc{font-size:.83rem;color:var(--muted);line-height:1.85;font-family:'Barlow',sans-serif;margin-bottom:18px;}
-  .project-status{display:inline-block;padding:4px 12px;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;font-family:'Barlow',sans-serif;border-radius:2px;}
-  .status-planning{background:#f2f3f5;color:#555;border:1px solid #d6d9de;}
-  .status-construction{background:rgba(0,72,171,.07);color:var(--blue);border:1px solid rgba(0,72,171,.25);}
-  .status-completed{background:rgba(0,33,73,.06);color:var(--navy);border:1px solid rgba(0,33,73,.22);}
+  .project-status{display:block;font-size:.85rem;font-weight:500;color:var(--navy);font-family:'Barlow',sans-serif;}
 
   /* ABOUT */
   #about{display:flex;justify-content:center;background:var(--white);}
@@ -231,7 +226,6 @@
       <p class="section-label">Our Portfolio</p>
       <h2 class="section-title">Current &amp; Recent Projects</h2>
     </div>
-    <a href="#contact" class="btn btn-navy">Enquire Now</a>
   </div>
   <div class="projects-grid reveal">
 
@@ -241,7 +235,7 @@
         <p class="project-num">01</p>
         <h3 class="project-title">Oyster Bay Icon</h3>
         <p class="project-desc">Four two-storey townhouses on an elevated site in Oyster Bay, with water views.</p>
-        <span class="project-status status-construction">Est. Completion Late 2027</span>
+        <p class="project-status">Due late 2027</p>
       </div>
     </div>
 
@@ -251,7 +245,7 @@
         <p class="project-num">02</p>
         <h3 class="project-title">Jannali Cascade</h3>
         <p class="project-desc">Five townhouses in Jannali, minutes from the train station, shops and cafes.</p>
-        <span class="project-status status-construction">Est. Completion Mid 2027</span>
+        <p class="project-status">Due mid 2027</p>
       </div>
     </div>
 
@@ -261,7 +255,7 @@
         <p class="project-num">03</p>
         <h3 class="project-title">Ecotourism Park</h3>
         <p class="project-desc">Timber cabins for short stays, on the edge of a national park on the Central Coast.</p>
-        <span class="project-status status-planning">In Planning 2027</span>
+        <p class="project-status">In planning, 2027</p>
       </div>
     </div>
 
@@ -271,7 +265,7 @@
         <p class="project-num">04</p>
         <h3 class="project-title">South West Star</h3>
         <p class="project-desc">Four-bedroom townhouses in Sydney's South West, with open-plan living and an ensuite to each main bedroom.</p>
-        <span class="project-status status-completed">Completed 2023</span>
+        <p class="project-status">Completed 2023</p>
       </div>
     </div>
 
